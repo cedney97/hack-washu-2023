@@ -1,5 +1,9 @@
+
+import HwHomePage from '~~/components/HwHomePage.vue';
 <template>
-    <v-card height="100vh">
+<HwHomePage></HwHomePage>
+
+<!-- <v-card height="100vh">
         WashU Hack 2023
-    </v-card>
+    </v-card> -->
 </template>
