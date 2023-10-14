@@ -1,5 +1,7 @@
+<script setup>
+    import TfHomePage from '../components/TfHomePage.vue'
+</script>
+
 <template>
-    <v-card height="100vh">
-        WashU Hack 2023
-    </v-card>
+    <TfHomePage />
 </template>
