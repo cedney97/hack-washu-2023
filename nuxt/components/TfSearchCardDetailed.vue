@@ -1,41 +1,79 @@
 <template>
-  <v-card>
-    <h1 class="pa-2 text-primary">{{ activityNumber + ". " + name }}</h1>
+  <v-card v-if="richPlace">
+    <h1 class="pa-2 text-primary">
+      {{ activityNumber + ". " + richPlace.name }}
+    </h1>
     <v-row>
       <v-col cols="12">
-        <v-img height="auto" width="100%" cover
-          :src="coverPhoto ? coverPhoto : 'https://npf-prod.imgix.net/uploads/shutterstock_110306771.jpg?auto=compress%2Cformat&fit=max&q=80&w=1600'" />
+        <v-img
+          height="auto"
+          width="100%"
+          cover
+          :src="'https://npf-prod.imgix.net/uploads/shutterstock_110306771.jpg?auto=compress%2Cformat&fit=max&q=80&w=1600'"
+        />
       </v-col>
       <v-col cols="12">
-        <v-row no-gutters class="px-2">
-          <v-col cols="12" v-if="address">
+        <v-row
+          no-gutters
+          class="px-2"
+        >
+          <v-col
+            v-if="richPlace.formatted_address"
+            cols="12"
+          >
             <b>Address:</b>
-            <p>{{ address }}</p>
+            <p>{{ richPlace.formatted_address }}</p>
           </v-col>
 
-          <v-col cols="12" v-if="rating" class="my-2">
-            <b>Rating:</b> {{ rating }} <img height="15" width="15" style="position: relative; top: 1.5px;"
-              src="../images/star.png">
+          <v-col
+            v-if="richPlace.rating"
+            cols="12"
+            class="my-2"
+          >
+            <b>Rating:</b> {{ richPlace.rating }} <img
+              height="15"
+              width="15"
+              style="position: relative; top: 1.5px;"
+              src="../images/star.png"
+            >
           </v-col>
 
-          <v-col cols="12" v-if="phoneNumber">
-            <b>Phone Number:</b> {{ phoneNumber }}
+          <v-col
+            v-if="richPlace.formatted_phone_number"
+            cols="12"
+          >
+            <b>Phone Number:</b> {{ richPlace.formatted_phone_number }}
           </v-col>
 
-          <v-col cols="12" v-if="website" class="my-2">
-            <a :href="website">Website</a>
+          <v-col
+            v-if="richPlace.website"
+            cols="12"
+            class="my-2"
+          >
+            <a :href="richPlace.website">Website</a>
           </v-col>
 
-          <v-col cols="12" class="my-2" v-if="reviews">
+          <v-col
+            v-if="richPlace.reviews"
+            cols="12"
+            class="my-2"
+          >
             <b>Reviews:</b>
 
-            <TfReviewCard v-for="(review, index) in reviews" :key="index" :review="review" />
+            <TfReviewCard
+              v-for="(review, index) in richPlace.reviews"
+              :key="index"
+              :review="review"
+            />
           </v-col>
 
-          <v-col v-if="photos" cols="12">
+          <!-- <v-col
+            v-if="photos"
+            cols="12"
+          >
             Photos:
             <TfPhotos :photos="photos" />
-          </v-col>
+          </v-col> -->
         </v-row>
       </v-col>
     </v-row>
@@ -43,17 +81,34 @@
 </template>
 
 <script setup lang="ts">
-import { PlacePhoto, PlaceReview } from '~~/types/Google/googlePlace.type';
+import { Place, PlacePhoto, PlaceReview } from '~~/types/Google/googlePlace.type';
 
-defineProps<{
-  coverPhoto?: string
-  name?: string
-  address?: string
-  rating?: number
-  phoneNumber?: string
-  website?: string
-  reviews?: Array<PlaceReview>
-  photos?: Array<PlacePhoto>
-  activityNumber?: number
+const props = defineProps<{
+  placeId: string
+  activityNumber: number
 }>()
+
+const richPlace = ref<Place | undefined>(undefined);
+
+async function getPlaceDetails() {
+    try {
+      const data = await $fetch('/api/google/search', {
+        params: {
+          placeId: props.placeId,
+        },
+      });
+
+      console.log('name: ', props.placeId, ' data: ', data)
+      // @ts-ignore
+      richPlace.value = data.result as Place;
+      console.log('from TfSearchCard rich Place:', richPlace.value);
+    } catch (error) {
+      console.error('Error fetching place details:', error)
+    }
+}
+
+onMounted(() => {
+  getPlaceDetails()
+});
+
 </script>

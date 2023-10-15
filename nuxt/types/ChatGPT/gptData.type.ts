@@ -7,15 +7,15 @@ export interface gptData {
     'finish_reason': string
 }
 
-export interface itinerary {
+export interface gptResponse {
     'trip': {
-        'itinerary': {
-            'day': string,
-            'date': string,
-            'activities': {
-                'locationName': string,
-                'address': string
+        'itinerary':{
+            'activities':{
+                'address': string,
+                'locationName': string
             }[]
-        }
+            'date': string,
+            'day': number
+        }[]
     }
 }

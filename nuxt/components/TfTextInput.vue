@@ -17,9 +17,16 @@ const emitValue = () => {
 </script>
 
 <template>
-    <div :class='["w-50", classes]'>
-        <p class="mb-2 text-primary font-italic w-100 text-center">{{ label && label }}</p>
-        <v-text-field v-model="location" :label="placeholderText && placeholderText" variant="outlined" color="blackSub"
-            @change="emitValue"></v-text-field>
-    </div>
+  <div>
+    <p class="mb-2 text-primary font-italic w-100 text-center">
+      {{ label && label }}
+    </p>
+    <v-text-field
+      v-model="location"
+      :label="placeholderText && placeholderText"
+      variant="outlined"
+      color="blackSub"
+      @change="emitValue"
+    />
+  </div>
 </template>
