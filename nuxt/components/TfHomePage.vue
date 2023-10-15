@@ -7,7 +7,34 @@ const location = ref("")
 const currDate = new Date()
 const startDate = ref<DateTime[]>([])
 const endDate = ref<DateTime[]>([])
-const interests: Ref<boolean[]> = ref([])
+const interests = ref<string[]>([])
+const labels = [
+    'Beach Vacations',
+    'Cultural Immersion',
+    'Food and Culinary Experiences',
+    'Wildlife Safaris',
+    'Historical Exploration',
+    'Urban Adventures',
+    'Relaxation and Wellness',
+    'Art and Architecture',
+    'Family-Friendly Destinations',
+    'Music and Festivals',
+    'Scenic Road Trips',
+    'Water Sports and Activities',
+    'Mountain Retreats',
+    'Skiing and Snowboarding',
+    'Yoga and Meditation Retreats',
+    'Wine and Vineyard Tours',
+    'Eco-Tourism and Sustainability',
+    'Volunteer and Service Trips',
+    'Photography and Nature',
+    'Solo Travel',
+    'Luxury and High-End Travel',
+    'Budget and Backpacking',
+    'Adventure Sports',
+    'Cultural Heritage and Traditions',
+    'Spiritual and Religious Journeys',
+]
 
 const updateNumberValue = (newNumberValue: number) => {
     people.value = newNumberValue
@@ -25,7 +52,7 @@ const updateEndDate = (newEndDate: DateTime[]) => {
     endDate.value = newEndDate
 }
 
-const updateInterests = (newInterests: boolean[]) => {
+const updateInterests = (newInterests: string[]) => {
     interests.value = newInterests
 }
 
@@ -61,7 +88,7 @@ const printData = () => {
             @emitValue="(newNumberValue: number) => updateNumberValue(newNumberValue)" />
         <div class="d-flex flex-column w-50 align-center">
             <p class="mb-2 text-primary w-100 text-center font-italic">What are you interested in?</p>
-
+            <TfSelect :labels="labels" @update:interests="(newInterests: string[]) => updateInterests(newInterests)" />
         </div>
         <v-btn color="primary" @click="printData">
             Explore
