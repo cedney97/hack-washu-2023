@@ -1,14 +1,14 @@
 <template>
     <div>
-    <h1>The itinerary generator</h1>
-    <ChatGptComponent />
+        <h1>The itinerary generator</h1>
+        <ChatGptComponent />
     </div>
-    </template>
-    <script>
-    import ChatGptComponent from '~/components/ChatGptComponent.vue';
-    export default {
+</template>
+<script>
+import ChatGptComponent from '~/components/ChatGptComponent.vue';
+export default {
     components: {
-    ChatGptComponent
+        ChatGptComponent
     }
-    };
-    </script>
+};
+</script>
