@@ -8,8 +8,7 @@
     <v-card>
       <v-row>
         <v-col cols="4">
-          <v-img height="100%" cover
-            :src="'https://npf-prod.imgix.net/uploads/shutterstock_110306771.jpg?auto=compress%2Cformat&fit=max&q=80&w=1600'" />
+          <v-img class="h-100" cover :src="richPlace.icon ? richPlace.icon : ''" />
         </v-col>
         <v-col cols="8">
           <v-row no-gutters>
@@ -59,5 +58,6 @@ async function getPlaceDetails() {
   // @ts-ignore
   richPlace.value = data.result as Place
   console.log('rich Place: ', richPlace.value)
+  // console.log(richPlace.value?.photos[0])
 }
 </script>

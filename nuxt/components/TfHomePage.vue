@@ -65,7 +65,7 @@ const printData = () => {
         'interests': interests.value
     }
     console.log(data)
-    // window.location.href = '/explore';
+    navigateTo({ path: '/explore', query: data })
 }
 
 </script>
