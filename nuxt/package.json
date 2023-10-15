@@ -10,6 +10,7 @@
   "dependencies": {
     "@mdi/font": "^7.2.96",
     "@nuxt/vite-builder": "^3.5.3",
+    "@nuxtjs/axios": "^5.13.6",
     "@pinia/nuxt": "^0.4.11",
     "@turf/turf": "^6.5.0",
     "@types/cls-hooked": "^4.3.3",
