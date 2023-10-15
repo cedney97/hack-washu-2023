@@ -6,3 +6,16 @@ export interface gptData {
     }, 
     'finish_reason': string
 }
+
+export interface itinerary {
+    'trip': {
+        'itinerary': {
+            'day': string,
+            'date': string,
+            'activities': {
+                'locationName': string,
+                'address': string
+            }[]
+        }
+    }
+}
