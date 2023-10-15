@@ -37,7 +37,6 @@
 </template>
       
 <script setup lang="ts">
-import { defineProps, ref, onMounted } from 'vue';
 import { Place } from '~~/types/Google/googlePlace.type';
 
 const props = defineProps<{

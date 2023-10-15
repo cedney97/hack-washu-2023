@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import { gptData } from '../types/ChatGPT/gptData.type'
 
 const route = useRoute();
@@ -13,13 +12,32 @@ console.log(data)
 
 const gptPrompt = `Give me a trip itinerary of ${location} with addresses, following these parameters:start date: ${startDate} end date: ${endDate} number of people: ${numberPeople} interests: ${interests.join(", ")}. I want this formatted as a JSON file following these fields: { trip: {  itinerary: { day: number, date: string, activities: {  locationName: string  address: string }[] }[] } } `;
 
-const resData: gptData[] = await $fetch('api/openAi/generate', {
-  params: {
-    prompt: gptPrompt
+const jsonData = ref(undefined)
+const loadingItinerary = ref(false)
+
+async function getItinerary() {
+  loadingItinerary.value = true
+
+  try {
+    const resData: gptData[] = await $fetch('api/openAi/generate', {
+      params: {
+        prompt: gptPrompt,
+      },
+    });
+
+    jsonData.value = await JSON.parse(resData[0].message.content ? resData[0].message.content : '');
+    console.log(jsonData)
+
+  } catch (error) {
+    console.error('Error fetching place details:', error)
   }
-})
-const jsonData = await JSON.parse(resData[0].message.content ? resData[0].message.content : '');
-console.log(jsonData)
+
+  loadingItinerary.value = false
+}
+
+// onMounted(() => {
+//   getItinerary()
+// })
 
 const ids = ref<string[]>([]);
 
@@ -32,7 +50,18 @@ const days = ref([['ChIJN1t_tDeuEmsRUsoyG83frY4'], ['ChIJVTPokywQkFQRmtVEaUZlJRA
 </script>
 
 <template>
-  <div class="h-screen w-screen d-flex flex-column align-center bg-whiteSub">
+
+  <v-card-title>
+    Loading Itinerary: {{ loadingItinerary }}
+  </v-card-title>
+
+  <v-btn @click="getItinerary()">
+    Generate Itinerary
+  </v-btn>
+
+  {{ jsonData }}
+
+  <!-- <div class="h-screen w-screen d-flex flex-column align-center bg-whiteSub">
     <v-container
       class="pa-4 h-100 overflow-hidden w-100"
       fluid
@@ -71,5 +100,8 @@ const days = ref([['ChIJN1t_tDeuEmsRUsoyG83frY4'], ['ChIJVTPokywQkFQRmtVEaUZlJRA
         </v-col>
       </v-row>
     </v-container>
+  </div> -->
+  <div>
+    {{ jsonData }}
   </div>
 </template>
