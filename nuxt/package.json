@@ -15,7 +15,7 @@
     "@pinia/nuxt": "^0.4.11",
     "@turf/turf": "^6.5.0",
     "@types/cls-hooked": "^4.3.3",
-    "axios": "^1.4.0",
+    "axios": "^1.5.1",
     "capacitor-secure-storage-plugin": "^0.9.0",
     "chart.js": "^4.2.1",
     "cls-hooked": "^4.2.2",
@@ -33,7 +33,8 @@
     "sequelize": "^6.31.1",
     "serverless-http": "^3.2.0",
     "vue": "^3.3.4",
-    "vuetify": "^3.3.21",
+    "vue3-google-map": "^0.18.0",
+    "vuetify": "^3.3.8",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {

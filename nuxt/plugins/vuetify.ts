@@ -3,6 +3,8 @@ import 'vuetify/styles'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { createVuetify, ThemeDefinition } from 'vuetify'
+import { VDatePicker } from 'vuetify/lib/labs/components.mjs'
+import { VuetifyDateAdapter } from 'vuetify/labs/date/adapters/vuetify'
 
 async function loadFonts () {
   if (process.client) {
@@ -19,20 +21,11 @@ async function loadFonts () {
 const ellipsisLightTheme: ThemeDefinition = {
   dark: false,
   colors: {
-    primary: '#6659FF',
-    secondary: '#040849',
-    accent: '#00D1BE',
-    info: '#292C64',
-    error: '#FF5252',
-    success: '#8782F8',
-    warning: '#FF9907',
-    ellipsis: '#6659FF',
-    elGrey_1: '#43588F',
-    elGrey_2: '#8EA6C1',
-    elGrey_3: '#E4E7FA',
-    elGrey_4: '#B2C6DD',
-    elGrey_5: '#F5F8FB',
-    elWhite: '#ffffff'
+    primary: '#6F5DCC',
+    blackSub: '#110E1F',
+    whiteSub: '#F1EFFA',
+    accent: '#9E95CD',
+    secondary: '#DAD5F2',
   }
 }
 
@@ -58,7 +51,13 @@ const ellipsisDarkTheme: ThemeDefinition = {
 export default defineNuxtPlugin(nuxtApp => {
   loadFonts()
   const vuetify = createVuetify({
-    components,
+    components: {
+      ...components,
+      VDatePicker
+    },
+    date: {
+      adapter: VuetifyDateAdapter,
+    },
     directives,
     ssr: true,
     theme: {

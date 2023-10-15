@@ -4,6 +4,7 @@ import './dotenv.config.js';
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
+      placesHost: ''
     },
     private: {
       openaiAuthToken: process.env.OPENAI_AUTH_TOKEN
