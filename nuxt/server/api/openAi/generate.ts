@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
             "role" : "system", "content" : "you are a helpful assistant"
           },
           { 
-            "role" : "user", "content" : "Give me a trip itinerary of Houston, Texas with addresses, following these parameters:start trip: 10/17/2023 end trip: 10/19/2023 number of people: 2 interests: Food and Culinary Experiences, Wildlife Safaris. I want this formatted as a JSON file following these fields: { trip: {  itinerary: { day: number, date: string, activities: {  locationName: string  address: string }[] }[] } } "
+            "role" : "user", "content" : prompt
           }],
     });
     console.log('ChatGPT Responded')

@@ -10,7 +10,7 @@ const numberPeople = data.numberPeople;
 const interests = data.interests;
 console.log(data)
 
-const gptPrompt = `Give me a trip itinerary of ${location} with addresses, following these parameters:start date: ${startDate} end date: ${endDate} number of people: ${numberPeople} interests: ${interests.join(", ")}. I want this formatted as a JSON file following these fields: { trip: {  itinerary: { day: number, date: string, activities: {  locationName: string  address: string }[] }[] } } `;
+const gptPrompt = `Give me a trip itinerary of ${location} with addresses, following these parameters:start date: ${startDate} end date: ${endDate} number of people: ${numberPeople} interests: ${interests.join(", ")}. Your response should be only a JSON file following these fields: { trip: {  itinerary: { day: number, date: string, activities: {  locationName: string  address: string }[] }[] } } `;
 
 const jsonData = ref(undefined)
 const loadingItinerary = ref(false)
@@ -53,6 +53,14 @@ const days = ref([['ChIJN1t_tDeuEmsRUsoyG83frY4', 'ChIJVTPokywQkFQRmtVEaUZlJRA']
   </v-btn>
 
   {{ jsonData }}
+
+  <v-overlay v-model="loadingItinerary" class="d-flex align-center justify-center">
+    <v-card class="pa-8 d-flex align-center justify-center flex-column">
+      <v-progress-circular indeterminate color="primary" class="mb-4"></v-progress-circular>
+      <p>Generating your itinerary!</p>
+      <p class="text-caption">This may take a moment :)</p>
+    </v-card>
+  </v-overlay>
 
   <!-- <div class="h-screen w-screen d-flex flex-column align-center bg-whiteSub">
     <v-container
