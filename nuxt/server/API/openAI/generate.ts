@@ -1,6 +1,7 @@
 
 import OpenAI from "openai";
 import { config } from "dotenv";
+// import { defineEventHandler } from 'h3';
 const openai = new OpenAI({
   apiKey : process.env.OPENAI_API_KEY,
 });
