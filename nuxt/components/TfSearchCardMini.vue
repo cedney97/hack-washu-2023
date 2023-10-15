@@ -19,7 +19,6 @@
           <v-col cols="12" v-if="rating">
             Rating: {{ rating }}
           </v-col>
-
           <v-col cols="12" v-if="priceLevel">
             Price: {{ priceLevel }}
           </v-col>
@@ -38,7 +37,6 @@
     
 <script setup lang="ts">
 import { PlaceOpeningHours } from '~~/types/Google/googlePlace.type';
-
 defineProps<{
   name?: string
   address?: string

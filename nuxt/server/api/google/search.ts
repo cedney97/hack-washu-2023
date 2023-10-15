@@ -14,8 +14,6 @@ const getPlaceDetails = async (placeId: string) => {
     }
 
     const res = await response.json();
-    console.log('res: ', res);
-
     return res as Place;
   } catch (error) {
     console.error('Error fetching place details:', error);
@@ -31,9 +29,8 @@ export default defineEventHandler(async (event) => {
     if (!placeId) {
       throw new Error('Missing placeId parameter');
     }
-
+    
     const placeDetails = await getPlaceDetails(placeId);
-
     return placeDetails;
   } catch (error) {
     console.error('Error in event handler:', error);

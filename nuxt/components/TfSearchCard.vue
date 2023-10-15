@@ -6,9 +6,19 @@
         :opening-hours="richPlace.opening_hours" />
     </v-card>
 
-    <v-card v-else @click="detailedView = !detailedView">
-      <TfSearchCardDetailed :name="richPlace.name" :address="richPlace.formatted_address" :rating="richPlace.rating"
-        :phone-number="richPlace.formatted_phone_number" :website="richPlace.website" :reviews="richPlace.reviews" />
+    <v-card
+      v-else
+      @click="detailedView = !detailedView"
+    >
+      <TfSearchCardDetailed
+        :name="richPlace.name"
+        :address="richPlace.formatted_address"
+        :rating="richPlace.rating"
+        :phone-number="richPlace.formatted_phone_number"
+        :website="richPlace.website"
+        :reviews="richPlace.reviews"
+        :photos="richPlace.photos"
+      />
     </v-card>
   </div>
 </template>
@@ -25,7 +35,6 @@ console.log('here')
 
 const richPlace = ref<Place | undefined>(undefined);
 const detailedView = ref(false);
-
 async function getPlaceDetails() {
   try {
     const data = await $fetch('/api/google/search', {
@@ -41,5 +50,7 @@ async function getPlaceDetails() {
   }
 }
 
-onMounted(getPlaceDetails);
+onMounted(() => {
+  getPlaceDetails()
+});
 </script>
