@@ -1,6 +1,6 @@
 <template>
     <div>
-    <h1>Chat with ChatGPT</h1>
+    <h1>The itinerary generator</h1>
     <ChatGptComponent />
     </div>
     </template>

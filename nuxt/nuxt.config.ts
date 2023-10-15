@@ -4,6 +4,7 @@ export default defineNuxtConfig({
     public: {
     },
     private: {
+      openaiAuthToken: process.env.OPENAI_AUTH_TOKEN
     }
   },
   components: {
@@ -37,9 +38,9 @@ export default defineNuxtConfig({
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@pinia/nuxt',
-    '@nuxtjs/axios',
   ],
   devtools: {
     enabled: true
-  }
+  },
+  
 })
