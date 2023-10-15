@@ -1,10 +1,13 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
+import './dotenv.config.js';
+
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       placesHost: ''
     },
     private: {
+      openaiAuthToken: process.env.OPENAI_AUTH_TOKEN
     }
   },
   components: {
@@ -37,9 +40,10 @@ export default defineNuxtConfig({
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@pinia/nuxt'
+    '@pinia/nuxt',
   ],
   devtools: {
     enabled: true
-  }
+  },
+  
 })
