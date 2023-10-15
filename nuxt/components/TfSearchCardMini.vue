@@ -1,6 +1,8 @@
 <template>
   <v-card class="w-100">
-    <p class="pa-2 text-h6 text-primary">{{ activityNumber + ". " + name }}</p>
+    <p class="pa-2 text-h6 text-primary">
+      {{ activityNumber + ". " + name }}
+    </p>
     <v-row class="w-100">
       <v-col cols="4">
         <v-img
@@ -11,14 +13,25 @@
       </v-col>
       <v-col cols="8">
         <v-row no-gutters>
-          <v-col cols="12" v-if="address">
+          <v-col
+            v-if="address"
+            cols="12"
+          >
             <b>Address:</b>
             <p>{{ address }}</p>
           </v-col>
 
-          <v-col cols="12" v-if="rating" class="my-2">
-            <b>Rating:</b> {{ rating }} <img height="15" width="15" style="position: relative; top: 1.5px;"
-              src="../images/star.png">
+          <v-col
+            v-if="rating"
+            cols="12"
+            class="my-2"
+          >
+            <b>Rating:</b> {{ rating }} <img
+              height="15"
+              width="15"
+              style="position: relative; top: 1.5px;"
+              src="../images/star.png"
+            >
           </v-col>
         </v-row>
       </v-col>
