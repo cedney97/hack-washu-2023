@@ -57,5 +57,7 @@ async function getPlaceDetails() {
   }
 }
 
-onMounted(getPlaceDetails);
+onMounted(() => {
+  getPlaceDetails()
+});
 </script>

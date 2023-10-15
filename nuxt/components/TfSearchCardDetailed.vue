@@ -19,7 +19,7 @@
             Address: {{ address }}
           </v-col>
   
-          <v-col cols="12">
+          <v-col cols="12"> 
             Rating: {{ rating }}
           </v-col>
   
@@ -29,6 +29,10 @@
   
           <v-col cols="12">
             Website: {{ website }}
+          </v-col>
+
+          <v-col cols="12">
+            Reviews: {{ reviews }}
           </v-col>
         </v-row>
       </v-col>
