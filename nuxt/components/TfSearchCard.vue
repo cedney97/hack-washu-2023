@@ -26,6 +26,7 @@
         :phone-number="richPlace.formatted_phone_number"
         :website="richPlace.website"
         :reviews="richPlace.reviews"
+        :photos="richPlace.photos"
       />
     </v-card>
   </div>
@@ -41,7 +42,6 @@ const props = defineProps<{
 
 const richPlace = ref<Place | undefined>(undefined);
 const detailedView = ref(false);
-
 async function getPlaceDetails() {
   try {
     const data = await $fetch('/api/google/search', {
@@ -49,7 +49,6 @@ async function getPlaceDetails() {
         placeId: props.placeId,
       },
     });
-
     richPlace.value = data.result as Place;
     console.log('rich Place:', richPlace.value);
   } catch (error) {
