@@ -7,7 +7,7 @@
       <v-row no-gutters>
         <v-col
           cols="4"
-          class="pa-3 overflow-auto h-screen w-100"
+          class="pa-2"
         >
           <v-sheet
             height="100vh"

@@ -3,14 +3,21 @@
     <p class="pa-2 text-h6 text-primary">
       {{ activityNumber + ". " + name }}
     </p>
-    <v-row class="w-100">
+    <v-row>
       <v-col cols="4">
+        <TfPhoto
+          v-if="photos && photos?.length > 0"
+          :photo-id="photos[0].photo_reference"
+          :name="name"
+        />
+
         <v-img
-          height="100%"
+          v-else
           cover
           :src="'https://npf-prod.imgix.net/uploads/shutterstock_110306771.jpg?auto=compress%2Cformat&fit=max&q=80&w=1600'"
         />
       </v-col>
+
       <v-col cols="8">
         <v-row no-gutters>
           <v-col
@@ -40,7 +47,7 @@
 </template>
     
 <script setup lang="ts">
-import { PlaceOpeningHours } from '~~/types/Google/googlePlace.type';
+import { PlaceOpeningHours, PlacePhoto } from '~~/types/Google/googlePlace.type';
 defineProps<{
   name?: string
   address?: string
@@ -50,5 +57,6 @@ defineProps<{
   priceLevel?: number
   openingHours?: PlaceOpeningHours
   activityNumber?: number
+  photos?: Array<PlacePhoto>
 }>()
 </script>

@@ -12,6 +12,7 @@
         :activity-number="activityNumber"
         :address="richPlace.formatted_address"
         :rating="richPlace.rating"
+        :photos="richPlace.photos"
       />
     </v-card>
 

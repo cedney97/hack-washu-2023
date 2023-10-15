@@ -2,7 +2,7 @@ import { Place } from "~~/types/Google/googlePlace.type";
 
 const serverKey = 'AIzaSyAF5niDHCDCD640Vyx7Tv1u19-lUXL9jpw';
 // const fields = 'name,rating,geometry,formatted_phone_number,photos,reviews,address_components,icon,price_level,website,adr_address,formatted_address,opening_hours,price_level';
-const fields = 'name,geometry,formatted_address,opening_hours,place_id'
+const fields = 'name,geometry,formatted_address,opening_hours,place_id,photos'
 
 const findPlace = async (name: string) => {
   try {

@@ -4,7 +4,7 @@ const serverKey = 'AIzaSyAF5niDHCDCD640Vyx7Tv1u19-lUXL9jpw';
 const resolvePhoto = async (photoReference: string) => {
   try {
     const response = await fetch(
-      `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${photoReference}&key=${serverKey}`
+      `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1600&photo_reference=${photoReference}&maxwidth=800&key=${serverKey}`
     );
 
     if (!response.ok) {
