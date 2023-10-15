@@ -1,4 +1,6 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
+import './dotenv.config.js';
+
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
