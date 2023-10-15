@@ -39,11 +39,7 @@ async function getItinerary() {
 //   getItinerary()
 // })
 
-const ids = ref<string[]>([]);
-
-ids.value.push('ChIJN1t_tDeuEmsRUsoyG83frY4');
-ids.value.push('ChIJVTPokywQkFQRmtVEaUZlJRA');
-ids.value.push('ChIJAYWNSLS4QIYROwVl894CDco');
+const days = ref([['ChIJN1t_tDeuEmsRUsoyG83frY4', 'ChIJVTPokywQkFQRmtVEaUZlJRA'], ['ChIJVTPokywQkFQRmtVEaUZlJRA'], ['ChIJAYWNSLS4QIYROwVl894CDco']])
 
 const days = ref([['ChIJN1t_tDeuEmsRUsoyG83frY4'], ['ChIJVTPokywQkFQRmtVEaUZlJRA'], ['ChIJAYWNSLS4QIYROwVl894CDco']])
 
@@ -73,7 +69,7 @@ const days = ref([['ChIJN1t_tDeuEmsRUsoyG83frY4'], ['ChIJVTPokywQkFQRmtVEaUZlJRA
         >
           <v-sheet
             height="100vh"
-            class="overflow-y-auto"
+            class="pa-3 overflow-auto h-screen w-100"
           >
             <div
               v-for="(day, i) in days"
@@ -87,14 +83,8 @@ const days = ref([['ChIJN1t_tDeuEmsRUsoyG83frY4'], ['ChIJVTPokywQkFQRmtVEaUZlJRA
           </v-sheet>
         </v-col>
 
-        <v-col
-          cols="8"
-          class="pa-0"
-        >
-          <v-card
-            height="100vh"
-            rounded
-          >
+        <v-col cols="8" class="pa-0">
+          <v-card height="100vh" rounded>
             <TfMap />
           </v-card>
         </v-col>

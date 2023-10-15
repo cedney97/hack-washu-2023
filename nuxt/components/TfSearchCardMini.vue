@@ -1,5 +1,6 @@
 <template>
   <v-card class="w-100">
+    <p class="pa-2 text-h6 text-primary">{{ activityNumber + ". " + name }}</p>
     <v-row class="w-100">
       <v-col cols="4">
         <v-img
@@ -10,42 +11,14 @@
       </v-col>
       <v-col cols="8">
         <v-row no-gutters>
-          <v-col
-            v-if="address"
-            cols="12"
-          >
-            <p class="text-caption">
-              Address: {{ address }}
-            </p>
+          <v-col cols="12" v-if="address">
+            <b>Address:</b>
+            <p>{{ address }}</p>
           </v-col>
 
-          <v-col cols="12">
-            <p class="text-h6">
-              {{ name }}
-            </p>
-          </v-col>
-
-          <v-col
-            v-if="rating"
-            cols="12"
-          >
-            Rating: {{ rating }}
-          </v-col>
-          <v-col
-            v-if="priceLevel"
-            cols="12"
-          >
-            Price: {{ priceLevel }}
-          </v-col>
-
-          <v-col
-            v-if="openingHours"
-            cols="12"
-          >
-            Hours:
-            <div v-for="day in openingHours?.weekday_text">
-              {{ day }}
-            </div>
+          <v-col cols="12" v-if="rating" class="my-2">
+            <b>Rating:</b> {{ rating }} <img height="15" width="15" style="position: relative; top: 1.5px;"
+              src="../images/star.png">
           </v-col>
         </v-row>
       </v-col>
@@ -63,5 +36,6 @@ defineProps<{
   website?: string
   priceLevel?: number
   openingHours?: PlaceOpeningHours
+  activityNumber?: number
 }>()
 </script>

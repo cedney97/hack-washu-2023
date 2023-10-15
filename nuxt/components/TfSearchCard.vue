@@ -1,38 +1,15 @@
 <template>
-  <div
-    v-if="richPlace"
-    class="mt-4 w-100"
-  >
-    <div
-      v-if="!detailedView"
-      class="pa-2"
-      @click="detailedView = !detailedView"
-    >
-      <TfSearchCardMini
-        :name="richPlace.name"
-        :address="richPlace.formatted_address"
-        :rating="richPlace.rating"
-        :phone-number="richPlace.formatted_phone_number"
-        :website="richPlace.website"
-        :price-level="richPlace.price_level"
-        :opening-hours="richPlace.opening_hours"
-      />
-    </div>
+  <div v-if="richPlace" class="mt-4 w-100">
+    <v-card v-if="!detailedView" @click="detailedView = !detailedView">
+      <TfSearchCardMini :name="richPlace.name" :activity-number="activityNumber" :address="richPlace.formatted_address"
+        :rating="richPlace.rating" />
+    </v-card>
 
-    <div
-      v-else
-      @click="detailedView = !detailedView"
-    >
-      <TfSearchCardDetailed
-        :name="richPlace.name"
-        :address="richPlace.formatted_address"
-        :rating="richPlace.rating"
-        :phone-number="richPlace.formatted_phone_number"
-        :website="richPlace.website"
-        :reviews="richPlace.reviews"
-        :photos="richPlace.photos"
-      />
-    </div>
+    <v-card v-else @click="detailedView = !detailedView">
+      <TfSearchCardDetailed :name="richPlace.name" :activity-number="activityNumber"
+        :address="richPlace.formatted_address" :rating="richPlace.rating" :phone-number="richPlace.formatted_phone_number"
+        :website="richPlace.website" :reviews="richPlace.reviews" :photos="richPlace.photos" />
+    </v-card>
   </div>
 </template>
       
@@ -41,6 +18,7 @@ import { Place } from '~~/types/Google/googlePlace.type';
 
 const props = defineProps<{
   placeId: string;
+  activityNumber: number;
 }>();
 
 const richPlace = ref<Place | undefined>(undefined);
