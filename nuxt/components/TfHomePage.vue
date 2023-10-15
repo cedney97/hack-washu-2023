@@ -113,5 +113,10 @@ const printData = () => {
     >
       Explore
     </v-btn>
+
+    <v-btn @click="navigateTo({ path: '/test'})">
+      Test
+    </v-btn>
+
   </div>
 </template>

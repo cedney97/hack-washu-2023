@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { gptData } from '../types/ChatGPT/gptData.type'
+import { Place } from '~~/types/Google/googlePlace.type';
+  
+const richPlace = ref<Place | undefined>(undefined);
 
 const route = useRoute();
 const data = route.query;
@@ -8,7 +11,6 @@ const startDate = data.startDate;
 const endDate = data.endDate;
 const numberPeople = data.numberPeople;
 const interests = data.interests;
-console.log(data)
 
 const gptPrompt = `Give me a trip itinerary of ${location} with addresses, following these parameters:start date: ${startDate} end date: ${endDate} number of people: ${numberPeople} interests: ${interests.join(", ")}. I want this formatted as a JSON file following these fields: { trip: {  itinerary: { day: number, date: string, activities: {  locationName: string  address: string }[] }[] } } `;
 
@@ -26,7 +28,7 @@ async function getItinerary() {
     });
 
     jsonData.value = await JSON.parse(resData[0].message.content ? resData[0].message.content : '');
-    console.log(jsonData)
+    console.log('result from OPENAI in explore: ', jsonData.value)
 
   } catch (error) {
     console.error('Error fetching place details:', error)
@@ -34,6 +36,23 @@ async function getItinerary() {
 
   loadingItinerary.value = false
 }
+
+
+
+async function findPlace() {
+    try {
+      const data = await $fetch('/api/google/find', {
+        params: {
+          name: 'Forest Park',
+        },
+      });
+      // @ts-ignore
+      richPlace.value = data.result as Place;
+      console.log('test rich Place:', richPlace.value);
+    } catch (error) {
+      console.error('Error fetching place details:', error)
+    }
+  }
 
 // onMounted(() => {
 //   getItinerary()
