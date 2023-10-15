@@ -8,9 +8,15 @@ const openai = new OpenAI({
 
 export default defineEventHandler(async () => {
     try {
-    const getChatGptApiResponse = await openai.completions.create({
+    const getChatGptApiResponse = await openai.chat.completions.create({
         model : "gpt-3.5-turbo",
-        prompt : "give me an itinerary of Seattle for two days with addresses",
+        messages:[
+          {
+            "role" : "system", "content" : "you are a helpful assistant"
+          },
+          { 
+            "role" : "user", "content" : "give me an itinerary of Seattle for two days with addresses"
+          }],
     });
     console.log(getChatGptApiResponse.choices);
 
@@ -20,6 +26,7 @@ export default defineEventHandler(async () => {
       console.error(error.message); // e.g. The authentication token you passed was invalid...
       console.error(error.code);  // e.g. 'invalid_api_key'
       console.error(error.type);  // e.g. 'invalid_request_error'
+      console.log("connected")
     } else {
       // Non-API error
       console.log(error);
