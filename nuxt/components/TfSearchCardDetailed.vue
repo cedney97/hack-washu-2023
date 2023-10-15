@@ -5,9 +5,14 @@
     </h1>
     <v-row>
       <v-col cols="12">
+        <TfPhoto
+          v-if="richPlace.photos && richPlace.photos?.length > 0"
+          :photo-id="richPlace.photos[0].photo_reference"
+          :name="richPlace.name"
+        />
+
         <v-img
-          height="auto"
-          width="100%"
+          v-else
           cover
           :src="'https://npf-prod.imgix.net/uploads/shutterstock_110306771.jpg?auto=compress%2Cformat&fit=max&q=80&w=1600'"
         />
@@ -66,14 +71,6 @@
               :review="review"
             />
           </v-col>
-
-          <!-- <v-col
-            v-if="photos"
-            cols="12"
-          >
-            Photos:
-            <TfPhotos :photos="photos" />
-          </v-col> -->
         </v-row>
       </v-col>
     </v-row>
@@ -81,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-import { Place, PlacePhoto, PlaceReview } from '~~/types/Google/googlePlace.type';
+import { Place } from '~~/types/Google/googlePlace.type';
 
 const props = defineProps<{
   placeId: string
