@@ -1,29 +1,12 @@
 <template>
-  <div
-    v-if="richPlace"
-    class="mt-4 w-100"
-  >
-    <v-card
-      v-show="!detailedView"
-      @click="detailedView = !detailedView"
-    >
-      <TfSearchCardMini
-        :name="richPlace.name"
-        :activity-number="activityNumber"
-        :address="richPlace.formatted_address"
-        :rating="richPlace.rating"
-      />
+  <div v-if="richPlace" class="mt-4 w-100">
+    <v-card v-show="!detailedView" @click="detailedView = !detailedView">
+      <TfSearchCardMini :name="richPlace.name" :activity-number="activityNumber" :address="richPlace.formatted_address"
+        :rating="richPlace.rating" />
     </v-card>
 
-    <v-card
-      v-show="detailedView"
-      @click="detailedView = !detailedView"
-    >
-      <TfSearchCardDetailed
-        v-if="richPlace.place_id"
-        :place-id="richPlace.place_id"
-        :activity-number="activityNumber"
-      />
+    <v-card v-show="detailedView" @click="detailedView = !detailedView">
+      <TfSearchCardDetailed v-if="richPlace.place_id" :place-id="richPlace.place_id" :activity-number="activityNumber" />
     </v-card>
   </div>
 </template>
@@ -34,7 +17,10 @@ import { Place } from '~~/types/Google/googlePlace.type';
 const props = defineProps<{
   name: string;
   activityNumber: number;
+  currentListNumber: number;
 }>();
+
+const emit = defineEmits(['emitCurrentListNumber'])
 
 const richPlace = ref<Place | undefined>(undefined);
 const detailedView = ref(false);
@@ -50,6 +36,11 @@ async function getPlaceDetails() {
     console.log('name: ', props.name, ' data: ', data)
     // @ts-ignore
     richPlace.value = data.candidates[0] as Place;
+    if (richPlace) {
+      emit('emitCurrentListNumber', props.currentListNumber + 1);
+    } else {
+      emit('emitCurrentListNumber', props.currentListNumber);
+    }
   } catch (error) {
     console.error('Error fetching place details:', error)
   }
