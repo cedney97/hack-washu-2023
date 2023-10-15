@@ -1,7 +1,7 @@
 import { Place } from "~~/types/Google/googlePlace.type";
 
 const serverKey = 'AIzaSyAF5niDHCDCD640Vyx7Tv1u19-lUXL9jpw';
-const fields = 'name,rating,formatted_phone_number,photos,reviews,address_components,icon,price_level,website,adr_address,formatted_address';
+const fields = 'name,rating,formatted_phone_number,photos,reviews,address_components,icon,price_level,website,adr_address,formatted_address,opening_hours,price_level';
 
 const getPlaceDetails = async (placeId: string) => {
   try {
@@ -14,8 +14,6 @@ const getPlaceDetails = async (placeId: string) => {
     }
 
     const res = await response.json();
-    console.log('res: ', res);
-
     return res as Place;
   } catch (error) {
     console.error('Error fetching place details:', error);
@@ -31,9 +29,8 @@ export default defineEventHandler(async (event) => {
     if (!placeId) {
       throw new Error('Missing placeId parameter');
     }
-
+    
     const placeDetails = await getPlaceDetails(placeId);
-
     return placeDetails;
   } catch (error) {
     console.error('Error in event handler:', error);
