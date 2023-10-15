@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { gptData } from '../types/ChatGPT/gptData.type'
+import { gptData, itinerary } from '../types/ChatGPT/gptData.type'
 
 const route = useRoute();
 const data = route.query;
@@ -15,10 +15,39 @@ const gptPrompt = `Give me a trip itinerary of ${location} with addresses, follo
 const jsonData = ref(undefined)
 const loadingItinerary = ref(false)
 
+async function cacheExist(Prompt : string)  {
+    const queryResult =  await $fetch('api/mongoDB/cacheExist', {
+      params: {
+        prompt: Prompt,
+      },
+    }); 
+    return queryResult;
+  }
+async function addCache(Prompt : string, jsonData : itinerary )  {
+     await $fetch('api/mongoDB/addCache', {
+      params: {
+        prompt:  Prompt,
+        response: jsonData,
+      },
+
+    });  
+  }
+
+ const crossRefMongoDB = async ( prompt : string) : Promise<itinerary | null> =>  {
+    // @ts-ignore
+    return await cacheExist(prompt) 
+} 
+
+
 async function getItinerary() {
   loadingItinerary.value = true
 
   try {
+    if(crossRefMongoDB(gptPrompt) != null) {
+      //@ts-ignore
+      jsonData.value = crossRefMongoDB(gptPrompt);
+    }
+    else {
     const resData: gptData[] = await $fetch('api/openAi/generate', {
       params: {
         prompt: gptPrompt,
@@ -27,7 +56,9 @@ async function getItinerary() {
 
     jsonData.value = await JSON.parse(resData[0].message.content ? resData[0].message.content : '');
     console.log(jsonData)
-
+    // @ts-ignore
+    addCache(gptPrompt, jsonData.value)
+  }
   } catch (error) {
     console.error('Error fetching place details:', error)
   }
