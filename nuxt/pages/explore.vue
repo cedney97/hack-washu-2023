@@ -41,12 +41,9 @@ async function getItinerary() {
 
 const days = ref([['ChIJN1t_tDeuEmsRUsoyG83frY4', 'ChIJVTPokywQkFQRmtVEaUZlJRA'], ['ChIJVTPokywQkFQRmtVEaUZlJRA'], ['ChIJAYWNSLS4QIYROwVl894CDco']])
 
-const days = ref([['ChIJN1t_tDeuEmsRUsoyG83frY4'], ['ChIJVTPokywQkFQRmtVEaUZlJRA'], ['ChIJAYWNSLS4QIYROwVl894CDco']])
-
 </script>
 
 <template>
-
   <v-card-title>
     Loading Itinerary: {{ loadingItinerary }}
   </v-card-title>
