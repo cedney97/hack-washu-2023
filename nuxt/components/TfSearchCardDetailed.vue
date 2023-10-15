@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <p class="pa-2">1. This</p>
+    <h1 class="pa-2">{{ activityNumber + ". " + name }}</h1>
     <v-row>
       <v-col cols="4">
         <v-img height="100%" cover
@@ -10,10 +10,6 @@
         <v-row no-gutters>
           <v-col cols="12" v-if="address">
             <p class="text-caption">Address: {{ address }}</p>
-          </v-col>
-
-          <v-col cols="12">
-            <p class="text-h6">{{ name }}</p>
           </v-col>
 
           <v-col cols="12" v-if="rating">
@@ -31,17 +27,10 @@
           <v-col cols="12">
             Reviews:
 
-            <TfReviewCard
-              v-for="(review, index) in reviews"
-              :key="index"
-              :review="review"
-            />
+            <TfReviewCard v-for="(review, index) in reviews" :key="index" :review="review" />
           </v-col>
 
-          <v-col
-            v-if="photos"
-            cols="12"
-          >
+          <v-col v-if="photos" cols="12">
             Photos:
             <TfPhotos :photos="photos" />
           </v-col>
@@ -63,5 +52,6 @@ defineProps<{
   website?: string
   reviews?: Array<PlaceReview>
   photos?: Array<PlacePhoto>
+  activityNumber?: number
 }>()
 </script>
