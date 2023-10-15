@@ -4,8 +4,7 @@
     <client-only>
       <v-app>
         <v-main>
-          <!-- Header goes heres -->
-          <ElHeader />
+          <tf-header />
           <slot />
         </v-main>
       </v-app>
