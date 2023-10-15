@@ -1,8 +1,25 @@
 <script setup lang="ts">
 
+import { gptData } from '../types/ChatGPT/gptData.type'
+
 const route = useRoute();
 const data = route.query;
+const location = data.location;
+const startDate = data.startDate;
+const endDate = data.endDate;
+const numberPeople = data.numberPeople;
+const interests = data.interests;
 console.log(data)
+
+const gptPrompt = `Give me a trip itinerary of ${location} with addresses, following these parameters:start date: ${startDate} end date: ${endDate} number of people: ${numberPeople} interests: ${interests.join(", ")}. I want this formatted as a JSON file following these fields: { trip: {  itinerary: { day: number, date: string, activities: {  locationName: string  address: string }[] }[] } } `;
+
+const resData: gptData[] = await $fetch('api/openAi/generate', {
+  params: {
+    prompt: gptPrompt
+  }
+})
+const jsonData = await JSON.parse(resData[0].message.content ? resData[0].message.content : '');
+console.log(jsonData)
 
 const ids = ref<string[]>([]);
 

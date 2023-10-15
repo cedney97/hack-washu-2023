@@ -4,7 +4,6 @@ import { DateTime } from 'luxon';
 
 const people = ref(0)
 const location = ref("")
-const currDate = new Date()
 const startDate = ref<DateTime[]>([])
 const endDate = ref<DateTime[]>([])
 const interests = ref<string[]>([])

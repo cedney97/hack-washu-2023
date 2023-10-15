@@ -10,7 +10,8 @@ async function chatGPT() {
     const data = await $fetch('/api/openAi/generate', {
       method: 'POST'
     });
-    console.log(data);
+    const jsonData = await JSON.parse(data[0].message.content ? data[0].message.content : '');
+    console.log(jsonData)
   }
   catch (error) {
     console.error('Error fetching GPT details:', error);
