@@ -1,5 +1,9 @@
 <script setup lang="ts">
 
+const route = useRoute();
+const data = route.query;
+console.log(data)
+
 const ids = ref<string[]>([]);
 
 ids.value.push('ChIJN1t_tDeuEmsRUsoyG83frY4');

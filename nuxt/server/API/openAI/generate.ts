@@ -9,6 +9,7 @@ const openai = new OpenAI({
 
 export default defineEventHandler(async () => {
     try {
+      console.log('here1')
     const getChatGptApiResponse = await openai.chat.completions.create({
         model : "gpt-3.5-turbo",
         messages:[
@@ -19,8 +20,9 @@ export default defineEventHandler(async () => {
             "role" : "user", "content" : "give me an itinerary of Seattle for two days with addresses"
           }],
     });
-    console.log(getChatGptApiResponse.choices);
-
+    console.log('here2')
+    // console.log(getChatGptApiResponse.choices);
+    return getChatGptApiResponse.choices;
   } catch (error) {
     if (error instanceof OpenAI.APIError) {
       console.error(error.status);  // e.g. 401
