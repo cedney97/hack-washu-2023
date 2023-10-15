@@ -3,8 +3,11 @@
     <p class="pa-2 text-h6 text-primary">{{ activityNumber + ". " + name }}</p>
     <v-row class="w-100">
       <v-col cols="4">
-        <v-img height="100%" cover
-          :src="'https://npf-prod.imgix.net/uploads/shutterstock_110306771.jpg?auto=compress%2Cformat&fit=max&q=80&w=1600'" />
+        <v-img
+          height="100%"
+          cover
+          :src="'https://npf-prod.imgix.net/uploads/shutterstock_110306771.jpg?auto=compress%2Cformat&fit=max&q=80&w=1600'"
+        />
       </v-col>
       <v-col cols="8">
         <v-row no-gutters>

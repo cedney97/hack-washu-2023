@@ -7,6 +7,7 @@
 // Type of `data` is inferred as string even though we returned a Date object
 async function chatGPT() {
   try {
+    // '/api/google/search'
     const data = await $fetch('/api/openAi/generate', {
       method: 'POST'
     });

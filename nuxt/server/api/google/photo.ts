@@ -10,8 +10,6 @@ const resolvePhoto = async (photoReference: string) => {
     if (!response.ok) {
       throw new Error(`Failed to fetch place details. Status: ${response.status}`);
     }
-
-    console.log('photo response: ', response)
     return response
   } catch (error) {
     console.error('Error fetching place details:', error);

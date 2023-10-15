@@ -70,27 +70,48 @@ const printData = () => {
 </script>
 
 <template>
-    <div class="h-screen w-screen d-flex flex-column align-center pt-5 pb-12 bg-whiteSub overflow-auto">
-        <TfTitle title="TravelFreely" />
-        <TfSubtitle subtitle="Create Your Personal Itinerary!" />
-        <TfTextInput label="Where do you want to go?" placeholderText="Location" classes="mt-8"
-            @emitValue="(newLocation: string) => updateLocation(newLocation)" />
-        <div class="d-flex flex-column w-50">
-            <p class="mb-2 text-primary w-100 text-center font-italic">When do you want to go?</p>
-            <div class="w-100 d-flex justify-center align-center">
-                <TfDateTimeInput @update:date="(newStartDate: DateTime[]) => updateStartDate(newStartDate)" />
-                <p class="mx-4">to</p>
-                <TfDateTimeInput @update:date="(newEndDate: DateTime[]) => updateEndDate(newEndDate)" />
-            </div>
-        </div>
-        <TfIntegerInput label="How many people are going?" placeholderText="Number" classes="mt-6" :numberValue="people"
-            @emitValue="(newNumberValue: number) => updateNumberValue(newNumberValue)" />
-        <div class="d-flex flex-column w-50 align-center">
-            <p class="mb-2 text-primary w-100 text-center font-italic">What are you interested in?</p>
-            <TfSelect :labels="labels" @update:interests="(newInterests: string[]) => updateInterests(newInterests)" />
-        </div>
-        <v-btn color="primary" @click="printData">
-            Explore
-        </v-btn>
+  <div class="h-screen w-screen d-flex flex-column align-center pt-5 pb-12 bg-whiteSub overflow-auto">
+    <TfTitle title="TravelFreely" />
+    <TfSubtitle subtitle="Create Your Personal Itinerary!" />
+    <TfTextInput
+      label="Where do you want to go?"
+      placeholder-text="Location"
+      classes="mt-8"
+      @emitValue="(newLocation: string) => updateLocation(newLocation)"
+    />
+    <div class="d-flex flex-column w-50">
+      <p class="mb-2 text-primary w-100 text-center font-italic">
+        When do you want to go?
+      </p>
+      <div class="w-100 d-flex justify-center align-center">
+        <TfDateTimeInput @update:date="(newStartDate: DateTime[]) => updateStartDate(newStartDate)" />
+        <p class="mx-4">
+          to
+        </p>
+        <TfDateTimeInput @update:date="(newEndDate: DateTime[]) => updateEndDate(newEndDate)" />
+      </div>
     </div>
+    <TfIntegerInput
+      label="How many people are going?"
+      placeholder-text="Number"
+      classes="mt-6"
+      :number-value="people"
+      @emitValue="(newNumberValue: number) => updateNumberValue(newNumberValue)"
+    />
+    <div class="d-flex flex-column w-50 align-center">
+      <p class="mb-2 text-primary w-100 text-center font-italic">
+        What are you interested in?
+      </p>
+      <TfSelect
+        :labels="labels"
+        @update:interests="(newInterests: string[]) => updateInterests(newInterests)"
+      />
+    </div>
+    <v-btn
+      color="primary"
+      @click="printData"
+    >
+      Explore
+    </v-btn>
+  </div>
 </template>
