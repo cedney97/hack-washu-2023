@@ -1,5 +1,5 @@
 <script setup>
-    import TfHomePage from '../components/TfHomePage.vue'
+import TfHomePage from '../components/TfHomePage.vue'
 </script>
 
 <template>
