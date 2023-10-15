@@ -1,4 +1,22 @@
 <script setup lang="ts">
+    defineProps<{
+        placeholderText?: string
+        value?: string
+    }>()
+</script>
+
+<template>
+    <div class='pa-4 rounded border'>
+        <input type="date" />
+    </div>
+</template>
+
+<style>
+    .border {
+        border: 1px solid #ccc;
+    }
+</style>
+<script setup lang="ts">
 
 import { VDatePicker } from 'vuetify/lib/labs/components.mjs';
 import { DateTime } from 'luxon';

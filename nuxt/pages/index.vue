@@ -1,7 +1,9 @@
 <script setup>
-import TfHomePage from '../components/TfHomePage.vue'
+definePageMeta({
+    layout: 'default',
+})
 </script>
 
 <template>
-    <TfHomePage />
+  <TfHomePage />
 </template>
