@@ -1,12 +1,25 @@
 <template>
-  <div v-if="richPlace" class="mt-4 w-100">
-    <v-card v-if="!detailedView" @click="detailedView = !detailedView">
-      <TfSearchCardMini :name="richPlace.name" :address="richPlace.formatted_address" :rating="richPlace.rating"
-        :phone-number="richPlace.formatted_phone_number" :website="richPlace.website" :price-level="richPlace.price_level"
-        :opening-hours="richPlace.opening_hours" />
-    </v-card>
+  <div
+    v-if="richPlace"
+    class="mt-4 w-100"
+  >
+    <div
+      v-if="!detailedView"
+      class="pa-2"
+      @click="detailedView = !detailedView"
+    >
+      <TfSearchCardMini
+        :name="richPlace.name"
+        :address="richPlace.formatted_address"
+        :rating="richPlace.rating"
+        :phone-number="richPlace.formatted_phone_number"
+        :website="richPlace.website"
+        :price-level="richPlace.price_level"
+        :opening-hours="richPlace.opening_hours"
+      />
+    </div>
 
-    <v-card
+    <div
       v-else
       @click="detailedView = !detailedView"
     >
@@ -19,7 +32,7 @@
         :reviews="richPlace.reviews"
         :photos="richPlace.photos"
       />
-    </v-card>
+    </div>
   </div>
 </template>
       
@@ -30,8 +43,6 @@ import { Place } from '~~/types/Google/googlePlace.type';
 const props = defineProps<{
   placeId: string;
 }>();
-
-console.log('here')
 
 const richPlace = ref<Place | undefined>(undefined);
 const detailedView = ref(false);

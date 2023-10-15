@@ -40,6 +40,6 @@ async function resolvePhotos() {
 }
 
 onMounted(() => {
-    resolvePhotos()
+    // resolvePhotos()
 })
 </script>

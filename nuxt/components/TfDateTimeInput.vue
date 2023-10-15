@@ -13,18 +13,12 @@ defineEmits<{
 }>()
 
 const date = ref<DateTime[]>([])
-
-const emitValue = () => {
-    console.log(date.value)
-    // emit('emitValue', date.value);
-}
 </script>
 
 <template>
     <div class='pa-4 rounded border'>
         <!-- <input type="date" v-model="date" @change="emitValue" /> -->
-        <v-date-picker :value="date" v-model="date" color="primary"
-            @update:model-value="$emit('update:date', date)"></v-date-picker>
+        <v-date-picker v-model="date" color="primary" @update:model-value="$emit('update:date', date)"></v-date-picker>
     </div>
 </template>
 

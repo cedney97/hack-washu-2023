@@ -4,8 +4,10 @@
   "compilerOptions": {
     "strict": true,
     "types": [
-      "@pinia/nuxt"
+      "@pinia/nuxt",
+      "./processEnv.d.ts"
     ],
+
     "paths": {
       "preact/compat": ["stub.d.ts"],
       "~~": [

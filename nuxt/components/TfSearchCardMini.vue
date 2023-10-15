@@ -1,29 +1,47 @@
 <template>
   <v-card class="w-100">
-    <p class="pa-2">1. This</p>
     <v-row class="w-100">
       <v-col cols="4">
-        <v-img height="100%" cover
-          :src="'https://npf-prod.imgix.net/uploads/shutterstock_110306771.jpg?auto=compress%2Cformat&fit=max&q=80&w=1600'" />
+        <v-img
+          height="100%"
+          cover
+          :src="'https://npf-prod.imgix.net/uploads/shutterstock_110306771.jpg?auto=compress%2Cformat&fit=max&q=80&w=1600'"
+        />
       </v-col>
       <v-col cols="8">
         <v-row no-gutters>
-          <v-col cols="12" v-if="address">
-            <p class="text-caption">Address: {{ address }}</p>
+          <v-col
+            v-if="address"
+            cols="12"
+          >
+            <p class="text-caption">
+              Address: {{ address }}
+            </p>
           </v-col>
 
           <v-col cols="12">
-            <p class="text-h6">{{ name }}</p>
+            <p class="text-h6">
+              {{ name }}
+            </p>
           </v-col>
 
-          <v-col cols="12" v-if="rating">
+          <v-col
+            v-if="rating"
+            cols="12"
+          >
             Rating: {{ rating }}
           </v-col>
-          <v-col cols="12" v-if="priceLevel">
+          <v-col
+            v-if="priceLevel"
+            cols="12"
+          >
             Price: {{ priceLevel }}
           </v-col>
 
-          <v-col cols="12" v-if="openingHours">
+          <v-col
+            v-if="openingHours"
+            cols="12"
+          >
             Hours:
             <div v-for="day in openingHours?.weekday_text">
               {{ day }}
