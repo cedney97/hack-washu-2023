@@ -27,6 +27,7 @@
     "redis": "^4.6.6",
     "sequelize": "^6.31.1",
     "vue": "^3.3.4",
+    "vue3-google-map": "^0.18.0",
     "vuetify": "^3.3.8",
     "webfontloader": "^1.6.28"
   },
